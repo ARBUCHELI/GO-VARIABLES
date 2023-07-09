@@ -389,6 +389,109 @@ func main() {
 	out to see their default value. The two numbers print the same result, 0, a valid value for both types. The empty string, when printed, displays nothing. The boolean value prints 
 	false.
 
+main.go
+-------
+package main
+
+import "fmt"
+
+func main() {
+  // Create three variables
+  // emptyInt an int8
+  var emptyInt int8
+  // emptyFloat a float32
+  var emptyFloat float32
+  // and emptyString a string
+  var emptyString string
+  // Finally, print them all out
+  fmt.Println(emptyInt, emptyFloat, emptyString)
+}
+
+==================================================================================================================================================================
+
+* Inferring Type
+----------------
+	There is a way to declare a variable without explicitly stating its type using the short declaration := operator. We might use the := operator if we know what value we want our 
+	variable to store when creating it. For instance:
+
+		nuclearMeltdownOccurring := true
+		radiumInGroundWater := 4.521
+		daysSinceLastWorkplaceCatastrophe := 0
+		externalMessage := "Everything is normal. Keep calm and carry on."
+
+	Above, we were able to define a bool, a float, an int, and a string without specifying the type. We used the := to create a variable and infer its type based on the value 
+	provided. Floats created in this way are of type float64. Integers created in this way are either int32 or int64 (we’ll discuss how this is determined in the next exercise).
+
+	Go also offers a separate syntax to declare a variable and infer its type. We could’ve written the same code from above as:
+
+		var nuclearMeltdownOccurring = true
+		var radiumInGroundWater = 4.521
+		var daysSinceLastWorkplaceCatastrophe = 0
+		var externalMessage = "Everything is normal. Keep calm and carry on."
+
+	Notice, in the second example, that we used the var keyword and the = operator. In both examples, we’ve declared and initialized variables while leaving the Go compiler to infer 
+	the type of the value assigned.
+
+	
+main.go
+-------
+package main
+
+import "fmt"
+
+func main() {
+  // Define daysOnVacation using := below:
+  daysOnVacation := 7
+  
+  
+  // Define hoursInDay using var and = below:
+  var hoursInDay = 24
+  
+  fmt.Println("You have spent", daysOnVacation * hoursInDay, "hours on vacation.")
+}
+
+==================================================================================================================================================================
+
+* Default in Type
+-----------------
+	There is one more common way to define an int in Go. Computers actually have a default length for the data in their Read-Only Memory (ROM). Some newer comps may have more 
+	processing power and can store/handle bigger chunks of data. These computers might be using a 64-bit architecture, but other computers still run on 32-bit architecture and work 
+	just fine. By providing the type int or uint, Go will check to see if the computer architecture is running on is 32-bit or 64-bit. Then it will either provide a 32-bit int 
+	(or uint) or a 64-bit one depending on the computer itself.
+
+	It’s recommended to use int unless there’s a reason to specify the size of the int (like knowing that value will be larger than the default type, or needing to optimize the amount 
+	of space used).
+
+		var timesWeWereFooled int
+		var foolishGamesPlayed uint
+
+	Above, we declared two variables, timesWeWereFooled an integer of either 32 or 64 bits. foolishGamesPlayed, an unsigned integer of either 32 or 64 bits.
+
+		consolationPrizes := 2
+
+	When a variable is declared and assigned a value using the := operator, it will be the same type as if it were declared as an int. In the example above, consolationPrize has the 
+	type int.
+
+main.go
+-------
+package main
+
+import "fmt"
+
+func main() {
+  // Define cupsOfCoffeeConsumed here
+  var cupsOfCoffeeConsumed int
+  // Give a value to cupsOfCoffeeConsumed
+  cupsOfCoffeeConsumed = 8
+  // Print out cupsOfCoffeeConsumed
+  fmt.Println(cupsOfCoffeeConsumed)
+}
+
+==================================================================================================================================================================
+
+
+
+
 
 
 
