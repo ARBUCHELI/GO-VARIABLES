@@ -452,8 +452,8 @@ func main() {
 
 ==================================================================================================================================================================
 
-* Default in Type
------------------
+* Default int Type
+------------------
 	There is one more common way to define an int in Go. Computers actually have a default length for the data in their Read-Only Memory (ROM). Some newer comps may have more 
 	processing power and can store/handle bigger chunks of data. These computers might be using a 64-bit architecture, but other computers still run on 32-bit architecture and work 
 	just fine. By providing the type int or uint, Go will check to see if the computer architecture is running on is 32-bit or 64-bit. Then it will either provide a 32-bit int 
@@ -489,8 +489,124 @@ func main() {
 
 ==================================================================================================================================================================
 
+* Updating Variables
+--------------------
+	Variables are different from constants because we can update them. This update feature becomes incredibly important when we need to use the original value of a variable for a 
+	calculation (or any general manipulation) and then update the variable to store the newly calculated value. Let’s say we were keeping track of the cost of items in our grocery 
+	basket:
 
+		var basketTotal float64
+		carrotPrice := 0.75
+ 
+		basketTotal = basketTotal + carrotPrice
+		fmt.Println(basketTotal) // Prints: 0.75
 
+	Notice that we used the original value of basketTotal which wasn’t assigned a value, so it has a default value of 0.0, added carrotPrice (0.75) and then assigned the computed 
+	value to basketTotal.
+
+	If we add another item:
+
+		spinachPrice := 1.50
+		basketTotal = spinachPrice + basketTotal
+		fmt.Println(basketTotal) // Prints: 2.25
+
+	This time, we added spinachPrice to basketTotal and stored the new value again in basketTotal, thereby updating our running total! Updating a variable by adding another number to 
+	itself and saving the new value is so common that Go has a shorthand for it, the += operator. We could have done the same operation using the following syntax:
+
+		spinachPrice := 1.50
+		basketTotal += spinachPrice
+		fmt.Println(basketTotal) // Prints: 2.25
+
+	Notice that basketTotal = spinachPrice + basketTotal and basketTotal += spinachPrice do the same thing! We can also do the same for strings (i.e. concatenating strings together):
+
+		command := "Hold my "
+		beverage := "soda"
+ 
+		command += beverage
+		fmt.Println(command) // Prints: Hold my soda
+
+	See how we were able to update command using += to store the value of both strings together?
+
+	In addition to += (yes, pun intended), Go has other arithmetic operations that perform calculations and update the variable’s value:
+
+		. -= to subtract from the variable.
+		. *= to multiply the variable by a factor.
+		. /= to divide the variable by a dividend.
+
+	Let’s get some practice using these shorthand operators.
+
+main.go
+-------
+package main
+
+import "fmt"
+
+func main() {
+  coolSneakers := 65.99
+  niceNecklace := 45.50
+  
+  // Define taxCalculation here
+  var taxCalculation float64
+  // Add coolSneakers to taxCalculation
+  taxCalculation += coolSneakers
+  // Add niceNecklace to taxCalculation
+  taxCalculation += niceNecklace
+  // Compute the NYC sales tax
+  // 8.875% of the purchase here:
+  taxCalculation *= .08875
+  // Uncomment this line for a receipt!
+  fmt.Println("Purchase of", coolSneakers + niceNecklace, "with 8.875% sales tax", taxCalculation, "equal to", coolSneakers + niceNecklace + taxCalculation)
+}
+
+==================================================================================================================================================================
+
+* Multiple Variable Declaration
+-------------------------------
+	So far we’ve been declaring variables one by one, each on their own separate line. But Go actually allows us to declare multiple variables on a single line, in fact, there’s a few 
+	different syntaxes!
+
+	Let’s start with declaring without assigning a value:
+
+		var part1, part2 string
+		part1 = "To be..."
+		part2 = "Not to be..."
+
+	Above, we declared both part1 and part2 on the same line both with the same type. If we’re using this syntax, both variables must be the same type.
+
+	If we already know what values we want to assign our variables we can use := like so:
+
+		quote, fact := "Bears, Beets, Battlestar Galactica", true
+		fmt.Println(quote) // Prints: Bears, Beets, Battlestar Galactica
+		fmt.Println(fact) // Prints: true
+
+	In the example above, we declare both quote and fact in the same line with one operator (:=). These variables are then assigned their respective values based on the ordering of 
+	variables and value. Since quote is the first variable, and the string "Bears, Beets, Battlestar Galactica" is the first value, quote has a value of "Bears, Beets, Battlestar 
+	Galactica". Similarly, fact then is assigned the value true.
+
+main.go
+-------
+package main
+
+import "fmt"
+
+func main () {
+  // Define magicNum and powerLevel below:
+  var magicNum, powerLevel int32
+
+  magicNum = 2048
+
+  powerLevel = 9001
+  
+  fmt.Println("magicNum is:", magicNum, "powerLevel is:", powerLevel)
+  
+  
+  // Define amount and unit below:
+  amount, unit := 10, "doll hairs"
+  
+  fmt.Println(amount, unit, ", that's expensive...")
+}
+
+==================================================================================================================================================================
 
 
 
