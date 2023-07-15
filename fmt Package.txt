@@ -1,8 +1,51 @@
 # LEARN GO: FMT PACKAGE
 -----------------------
-The fmt Package
-fmt is one of Go’s core packages. We’ve used it for print information to the terminal using the method fmt.Println(). fmt has a broader purpose, helping us format data, which is why it’s sometimes referred to as the format package (though it’s pronounced “fumpt”, and no that’s not a typo).
 
-But let’s not focus on the odd pronunciation, instead, let’s go over what else we can use fmt to do! In addition to Println(), there’s also Print() and Printf() each with their own variation of how to print data. There’s also Sprint(), Sprintln(), and Sprintf() which formats but does not print anything to the terminal. We can even get user input by using Scan(). There are many more methods in Go’s fmt package, but in this lesson, we’ll focus on the ones we just mentioned.
+* The fmt Package
+-----------------
+	fmt is one of Go’s core packages. We’ve used it for print information to the terminal using the method fmt.Println(). fmt has a broader purpose, helping us format data, which is 
+	why it’s sometimes referred to as the format package (though it’s pronounced “fumpt”, and no that’s not a typo).
 
-In this lesson, we’ll cover the intricacies of using these methods, so let’s go formatting!
+	But let’s not focus on the odd pronunciation, instead, let’s go over what else we can use fmt to do! In addition to Println(), there’s also Print() and Printf() each with their 
+	own variation of how to print data. There’s also Sprint(), Sprintln(), and Sprintf() which formats but does not print anything to the terminal. We can even get user input by using 
+	Scan(). There are many more methods in Go’s fmt package, but in this lesson, we’ll focus on the ones we just mentioned.
+
+	In this lesson, we’ll cover the intricacies of using these methods, so let’s go formatting!
+
+main.go
+-------
+package main
+
+import "fmt"
+
+func main() {
+  // There's a mix of Println and Print!
+  fmt.Println("Can", "you", "tell", "the", "difference?")
+  fmt.Print("Between", "these", "two", "methods?")
+  fmt.Print("Anything odd about", "the spacing? \n")
+  fmt.Println("Don't worry if you can't spot it, we'll go through this together!")
+}
+
+==================================================================================================================================================================
+
+The Print Method
+fmt.Println() allows us to print to the terminal and view the data that we’re working with. It has some defaulting styling built-in that makes viewing data easier for us. fmt.Println() prints its arguments (data provided within its parentheses ( )) with an included space in between each argument and adds a line break at the end. Take for example:
+
+fmt.Println("Println", "formats", "really well")
+fmt.Println("Right?")
+Which prints:
+
+Println formats really well
+Right?
+Notice that our first print statement has 3 arguments and each one has an accompanying space between each argument even though we never outright included one in our code. For our second print statement, the argument is printed on the next line since Println() adds a line break for us.
+
+However, there are times we might not want the default formatting. In such cases, using fmt.Print() would be more appropriate:
+
+fmt.Print("The answer is", ": ")
+fmt.Print("12")
+The above code snippet would print:
+
+The answer is: 12
+Notice that there’s no default spacing added when fmt.Print() has multiple arguments. Also, since fmt.Print() doesn’t add a line break after printing, the argument for the second print statement print on the same line as the first print statement’s.
+
+Let’s compare this for ourselves.
